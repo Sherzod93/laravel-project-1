@@ -11,7 +11,7 @@ class ContactRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,6 +24,20 @@ class ContactRequest extends FormRequest
         return [
             'subject'=>'required|min:5|max:50',
             'message'=>'required|min:50|max:500',
+        ];
+    }
+    public function attributes(): array
+    {
+        return [
+            'subject'=>'theme',
+            'message'=>'message text',
+        ];
+    }
+    public function messages(): array
+    {
+        return [
+            'subject'=>'The field subject must be filled',
+            'message'=>'The field message must be filled',
         ];
     }
 }
